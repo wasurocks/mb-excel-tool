@@ -1,0 +1,27 @@
+services:
+    mountebank:
+        image: bbyars/mountebank:2.9.1
+        container_name: mountebank
+        ports:
+            - "2525:2525"
+            - "4545:4545"
+            - "5555:5555"
+        command: ["start"]
+    mb-excel-runner:
+        build:
+            context: ./mb-excel-runner
+            dockerfile: Dockerfile
+        container_name: mb-excel-runner
+        volumes:
+            - ./src:/home/node/app/src
+        command: node build/index.js
+        environment:
+            - MB_BASE_URL = mountebank
+        depends_on:
+            mountebank:
+                condition: service_started
+
+volumes:
+    mb-excel-runner-vol:
+        name: mb-excel-runner-vol
+        external: true

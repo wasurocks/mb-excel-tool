@@ -1,0 +1,21 @@
+{
+    "name": "mb-excel-runner",
+    "version": "1.0.0",
+    "description": "Parses excel file and creates mountebank stubs",
+    "scripts": {
+        "build": "tsc -p .",
+        "build-and-start": "npm run build && node build/index.js"
+    },
+    "author": "wasurocks",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/express": "^4.17.11",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.1.3"
+    },
+    "dependencies": {
+        "axios": "^1.7.2",
+        "mountebank": "^2.9.1",
+        "xlsx": "^0.18.5"
+    }
+}
